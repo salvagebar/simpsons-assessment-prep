@@ -1,4 +1,5 @@
 const episodeSelector = document.getElementById("episode-selector");
+const submitButton = document.getElementById("submit-button");
 
 fetch(`https://api.sampleapis.com/simpsons/episodes`)
   .then((response) => response.json())
@@ -8,13 +9,18 @@ fetch(`https://api.sampleapis.com/simpsons/episodes`)
   .catch((err) => console.error(err));
 
 let populateFormDropdown = (episodes) => {
-  console.log("!!!!!");
-  for (const episode of episodes) {
-    console.log(episode);
+  let counter = 0;
 
-    let newOption = document.createElement("option");
-    newOption.textContent = episode.name;
-    newOption.value = episode.name;
-    episodeSelector.append(newOption);
+  for (const episode of episodes) {
+    counter += 1;
+    if (counter <= 13) {
+      let newOption = document.createElement("option");
+      newOption.textContent = episode.name;
+      newOption.value = episode.name;
+      episodeSelector.append(newOption);
+    }
   }
 };
+
+console.log("The submit button:");
+console.log(submitButton);
