@@ -1,6 +1,9 @@
 const episodeSelector = document.getElementById("episode-selector");
 const submitButton = document.getElementById("submit-button");
 const detailContainer = document.getElementById("episode-detail-container");
+const commentButton = document.getElementById("comment-submit-button");
+const commentInput = document.getElementById("comment-input");
+const commentList = document.getElementById("comment-list");
 
 fetch(`https://api.sampleapis.com/simpsons/episodes`)
   .then((response) => response.json())
@@ -10,6 +13,7 @@ fetch(`https://api.sampleapis.com/simpsons/episodes`)
   .catch((err) => console.error(err));
 
 let episodeList = [];
+let currentEpisode = null;
 
 let populateFormDropdown = (episodes) => {
   let counter = 0;
@@ -31,6 +35,7 @@ submitButton.addEventListener("click", (event) => {
 
   let episodeName = episodeSelector.value;
   let episode = findEpisodeByName(episodeName);
+  currentEpisode = episode;
   let titleHeader = document.createElement("h3");
   titleHeader.textContent = episode.name;
   detailContainer.append(titleHeader);
@@ -47,3 +52,12 @@ let findEpisodeByName = (name) => {
     }
   }
 };
+
+commentButton.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  let newComment = document.createElement("li");
+  newComment.innerHTML += `<strong>${currentEpisode.name}</strong> -- `;
+  newComment.innerHTML += commentInput.value;
+  commentList.append(newComment);
+});

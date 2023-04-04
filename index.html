@@ -10,11 +10,17 @@
   </head>
   <body>
     <form action="#">
-      <label for="episode-selector">Choose an episode:</label>
+      <label for="episode-selector">Choose an episode: </label>
       <select id="episode-selector" name="episode-selector"></select>
       <input id="submit-button" type="submit" value="Select Episode" />
-      <br />
-      <div id="episode-detail-container"></div>
     </form>
+    <br />
+    <div id="episode-detail-container"></div>
+    <form action="#">
+      <label for="comment-input">Your Comment Here: </label>
+      <input id="comment-input" name="comment-input" type="text" />
+      <input id="comment-submit-button" type="submit" value="Submit Comment" />
+    </form>
+    <ul id="comment-list"></ul>
   </body>
 </html>
